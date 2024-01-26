@@ -1,0 +1,8 @@
+<launch>
+   <node name="republish1" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera1/infra1/image_rect_raw raw out:=/cam0/image_raw _image_transport:=compressed"/>
+
+   <node pkg="slam_practice" type="slam_practice_node" name="slam_practice_node" output="screen" launch-prefix="gdb -ex run --args">
+	   <param name="image_topic" value="/cam0/image_raw"/>
+   </node>
+
+</launch>
