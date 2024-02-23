@@ -6,7 +6,6 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
-#include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
 
@@ -24,6 +23,13 @@ class Tracker {
   cv::Ptr<cv::DescriptorExtractor> mpDescriptorExtractor;
 
   std::shared_ptr<Frame> mpLastFrame, mpCurrentFrame;
+	std::shared_ptr<Frame> mpInitFrame;
+
+	// Camera intrinsic
+  double mF;
+	cv::Point2d mPrinciplePoint;
+
+	std::vector<std::shared_ptr<Frame>> mvpFrame;
 };
 
 #endif
