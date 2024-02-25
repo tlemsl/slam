@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(slam_practice)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-ggdb)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -15,12 +15,13 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   visualization_msgs
+  geometry_msgs
   cv_bridge
 )
 
 set(OpenCV_DIR /usr/local/include/opencv4)
 find_package(OpenCV REQUIRED)
-
+find_package(Sophus REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -126,7 +127,8 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-
+  ${Sophus_INCLUDE_DIRS}
+  /usr/include/eigen3
 )
 
 ## Declare a C++ library

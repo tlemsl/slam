@@ -3,6 +3,7 @@
 #include <cv_bridge/cv_bridge.h>
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
+#include <geometry_msgs/PoseArray.h>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
@@ -10,6 +11,7 @@
 #include <vector>
 
 #include "slam_practice/frame.h"
+
 
 class Tracker {
  public:
@@ -24,12 +26,17 @@ class Tracker {
 
   std::shared_ptr<Frame> mpLastFrame, mpCurrentFrame;
 	std::shared_ptr<Frame> mpInitFrame;
+  
+  ros::Publisher posePub;
+  geometry_msgs::PoseArray posearray_msg;
 
 	// Camera intrinsic
   double mF;
 	cv::Point2d mPrinciplePoint;
 
 	std::vector<std::shared_ptr<Frame>> mvpFrame;
+
+  void publishPose();
 };
 
 #endif
